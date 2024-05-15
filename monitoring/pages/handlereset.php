@@ -12,7 +12,7 @@ $board = $data['board'];
 $sql = "UPDATE tb_device SET wifi = '$wifi', board = '$board'";
 $koneksi->query($sql);
 
-sleep(3);
+sleep(5);
 
 $sql_reset = "UPDATE tb_device SET wifi = 0, board = 0";
 $koneksi->query($sql_reset);
