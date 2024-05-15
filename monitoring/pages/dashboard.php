@@ -18,6 +18,7 @@
     <!-- Nucleo Icons -->
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/0eea203261.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -412,6 +413,9 @@
                 <!-- Actuator Control END -->
                 <!-- ================ -->
 
+                <!-- ================ -->
+                <!-- Restart -->
+                <!-- ================ -->
                 <div class="col-lg-2">
                     <div class="card">
                         <div class="card-header pb-0 p-3">
@@ -447,6 +451,19 @@
                         </div>
                     </div>
                 </div>  
+
+                <div class="popup-container hidden" id="customAlert">
+                    <div class="popup-box">
+                        <h1 id="alertTitle">Restart Wifi</h1>
+                        <p id="alertMessage">Restart wifi sekarang?</p>
+                        <button class="glow-on-hover" id="cancelButton">Cancel</button>
+                        <button class="glow-on-hover" id="okButton">OK</button>
+                    </div>
+                </div>
+
+                <!-- ================ -->
+                <!-- Restart END -->
+                <!-- ================ --> 
             </div>
         </div>
         <footer class="footer pt-1  ">
@@ -712,15 +729,6 @@
 
     </script>
     <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-        var options = {
-            damping: '0.5'
-        }
-        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-    </script>
-    <script>
     document.addEventListener("DOMContentLoaded", function() {
         var restartWifiBtn = document.getElementById("restartWifiBtn");
         var restartMicrocontrollerBtn = document.getElementById("restartMicrocontrollerBtn");
@@ -746,6 +754,67 @@
             data[deviceType] = 1;
             xhr.send(JSON.stringify(data));
         }
+    });
+
+    // ==========
+    // Alert
+    // ==========
+    document.addEventListener("DOMContentLoaded", function() {
+        var restartWifiBtn = document.getElementById("restartWifiBtn");
+        var restartMicrocontrollerBtn = document.getElementById("restartMicrocontrollerBtn");
+        var customAlert = document.getElementById("customAlert");
+        var alertTitle = document.getElementById("alertTitle");
+        var alertMessage = document.getElementById("alertMessage");
+        var cancelButton = document.getElementById("cancelButton");
+        var okButton = document.getElementById("okButton");
+        var currentDeviceType = "";
+        var sidenav = document.getElementById("sidenav-main");
+
+        function showAlert(deviceType, title, message) {
+            alertTitle.textContent = title;
+            alertMessage.textContent = message;
+            customAlert.classList.remove("hidden");
+            currentDeviceType = deviceType;
+        }
+
+        function hideAlert() {
+            customAlert.classList.add("hidden");
+            sidenav.classList.add("hidden");
+            
+        }
+
+        function updateDevice(deviceType) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "handlereset.php", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                }
+            };
+            var data = {};
+            data[deviceType] = 1;
+            xhr.send(JSON.stringify(data));
+        }
+
+        restartWifiBtn.addEventListener("click", function() {
+            showAlert("wifi", "Restart Wifi", "Restart wifi sekarang?");
+        });
+
+        restartMicrocontrollerBtn.addEventListener("click", function() {
+            showAlert("board", "Restart Microcontroller", "Restart microcontroller sekarang?");
+        });
+
+        cancelButton.addEventListener("click", function() {
+            hideAlert();
+        });
+
+        okButton.addEventListener("click", function() {
+            hideAlert();
+            if (currentDeviceType) {
+                updateDevice(currentDeviceType);
+            }
+        });
     });
 
     </script>
