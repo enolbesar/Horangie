@@ -88,6 +88,7 @@
         </div>
     </aside>
     <main class="main-content position-relative border-radius-lg ">
+        <!-- Title -->
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
@@ -99,6 +100,7 @@
                 </div>
             </div>
         </nav>
+        <!-- Title END -->
 
         <div class="container-fluid py-2">
             <div class="row">
@@ -329,6 +331,9 @@
                     </div>
                 </div>
 
+                <!-- ================ -->
+                <!-- Actuator Control -->
+                <!-- ================ -->
                 <div class="col-lg-4">
                     <div class="card">
                         <div class="card-header pb-0 p-3 d-flex justify-content-between align-items-center">
@@ -351,7 +356,7 @@
                                         </div>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckIrrigation" onchange="swapIrrPump(this.checked)" <?php echo $irrPump == 1 ? "checked" : ""; ?>>
+                                        <input class="form-check-input button-disable" type="checkbox" role="switch" id="flexSwitchCheckIrrigation" onchange="swapIrrPump(this.checked)" <?php echo $irrPump == 1 ? "checked" : ""; ?>>
                                     </div>
                                 </li>
 
@@ -366,7 +371,7 @@
                                         </div>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckMisting" onchange="swapMistingPump(this.checked)" <?php echo $mistPump == 1 ? "checked" : ""; ?>>
+                                        <input class="form-check-input button-disable" type="checkbox" role="switch" id="flexSwitchCheckMisting" onchange="swapMistingPump(this.checked)" <?php echo $mistPump == 1 ? "checked" : ""; ?>>
                                     </div>
                                 </li>
 
@@ -381,7 +386,7 @@
                                         </div>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckHeater" onchange="swapHeater(this.checked)" <?php echo $heater == 1 ? "checked" : ""; ?>>
+                                        <input class="form-check-input button-disable" type="checkbox" role="switch" id="flexSwitchCheckHeater" onchange="swapHeater(this.checked)" <?php echo $heater == 1 ? "checked" : ""; ?>>
                                     </div>
                                 </li>
 
@@ -396,13 +401,16 @@
                                         </div>
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckLamp" onchange="swapLamp(this.checked)" <?php echo $lamp == 1 ? "checked" : ""; ?>>
+                                        <input class="form-check-input button-disable" type="checkbox" role="switch" id="flexSwitchCheckLamp" onchange="swapLamp(this.checked)" <?php echo $lamp == 1 ? "checked" : ""; ?>>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
+                <!-- ================ -->
+                <!-- Actuator Control END -->
+                <!-- ================ -->
 
                 <div class="col-lg-2">
                     <div class="card">
@@ -477,13 +485,13 @@
                 if (modeValue === 1) {
                     document.getElementById("modeA").classList.add("active");
                     document.getElementById("modeM").classList.remove("active");
-                    document.querySelectorAll('.form-check-input').forEach(function(el) {
+                    document.querySelectorAll('.button-disable').forEach(function(el) {
                         el.disabled = true;
                     });
                 } else {
                     document.getElementById("modeM").classList.add("active");
                     document.getElementById("modeA").classList.remove("active");
-                    document.querySelectorAll('.form-check-input').forEach(function(el) {
+                    document.querySelectorAll('.button-disable').forEach(function(el) {
                         el.disabled = false;
                     });
                 }
@@ -495,7 +503,7 @@
     window.onload = function() {
         var initialMode = <?php echo $mode; ?>;
         if (initialMode === 1) {
-            document.querySelectorAll('.form-check-input').forEach(function(el) {
+            document.querySelectorAll('.button-disable').forEach(function(el) {
                 el.disabled = true;
             });
         }
