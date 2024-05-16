@@ -60,14 +60,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../pages/tables.html">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">History</span>
-                    </a>
-                </li>
+          <a class="nav-link" href="../pages/tables.php">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Table</span>
+          </a>
+        </li>
                 <li class="nav-item">
                     <a class="nav-link " href="../pages/userData.php">
                         <div
@@ -78,14 +78,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="../pages/tables.html">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Check UID</span>
-                    </a>
-                </li>
+          <a class="nav-link" href="../pages/registration.php">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-check-bold text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Registration</span>
+          </a>
+        </li>
         </div>
     </aside>
     <main class="main-content position-relative border-radius-lg ">
