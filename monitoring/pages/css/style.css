@@ -22,20 +22,20 @@
 
 .popup-container .popup-box {
   width: 550px;
-  background: #212534;
+  /* background: #212534; */
   border-radius: 6px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   padding: 35px;
 }
 
 .popup-box h1 {
-  color: #ffffff;
+  /* color: #212534; */
   text-align: center;
   line-height: 1;
 }
 
 .popup-box p {
-  color: aliceblue;
+  /* color: aliceblue; */
   margin: 12px 0;
   text-align: center;
 }
@@ -43,12 +43,12 @@
 .popup-box .glow-on-hover {
   width: 100%;
   height: 45px;
-  background: #4e00c2;
+  /* background: #4e00c2; */
   margin-top: 20px;
   border: none;
   outline: none;
   color: #fff;
-  background: #111;
+  /* background: #111; */
   cursor: pointer;
   position: relative;
   z-index: 0;

@@ -451,14 +451,16 @@
                     </div>
                 </div>  
 
+                <!-- Alert -->
                 <div class="popup-container hidden" id="customAlert">
-                    <div class="popup-box">
-                        <h1 id="alertTitle">Restart Wifi</h1>
-                        <p id="alertMessage">Restart wifi sekarang?</p>
-                        <button class="glow-on-hover" id="cancelButton">Cancel</button>
+                    <div class="popup-box bg-primary">
+                        <h1 id="alertTitle" class="text-secondary">Restart Wifi</h1>
+                        <p id="alertMessage" class="text-secondary">Restart wifi sekarang?</p>
+                        <button class="glow-on-hover bg-primary" id="cancelButton">Cancel</button>
                         <button class="glow-on-hover" id="okButton">OK</button>
                     </div>
                 </div>
+                <!-- Alert END -->
 
                 <!-- ================ -->
                 <!-- Restart END -->
