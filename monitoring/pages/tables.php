@@ -125,16 +125,16 @@
           <div class="card mb-4">
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-left mb-0">
                   <thead>
                     <tr>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Timestamp</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rain Intensity</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Air Temperature</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Soil Moisture</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Air Humidity</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Heat Index</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sunlight</th>
+                      <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Timestamp</th>
+                      <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rain Intensity</th>
+                      <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Air Temperature</th>
+                      <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Soil Moisture</th>
+                      <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Air Humidity</th>
+                      <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Heat Index</th>
+                      <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sunlight</th>
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
@@ -157,6 +157,9 @@
                       </tr>
                     <?php endif; ?>
                   </tbody>
+                  <div class="text-right p-3">
+                  <a href="export_csv.php" class="btn btn-primary">Export to CSV</a>
+                  </div>
                 </table>
               </div>
             </div>
@@ -197,40 +200,6 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
 
-        // // Gantilah URL ini dengan endpoint API Anda
-        // const apiUrl = 'https://your-api-endpoint.com/get-weather-data';
-
-        // // Fungsi untuk mengambil data dari API
-        // async function fetchWeatherData() {
-        //   try {
-        //     const response = await fetch(apiUrl);
-        //     const data = await response.json();
-
-        //     const tableBody = document.getElementById('weather-table-body');
-        //     tableBody.innerHTML = '';
-
-        //     data.forEach(item => {
-        //       const row = document.createElement('tr');
-              
-        //       row.innerHTML = `
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.timestamp}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.rain}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.temp}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.soil}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.hum}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.hindex}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.sun}</span></td>
-        //       `;
-
-        //       tableBody.appendChild(row);
-        //     });
-        //   } catch (error) {
-        //     console.error('Error fetching weather data:', error);
-        //   }
-        // }
-
-        // // Panggil fungsi fetchWeatherData saat halaman dimuat
-        // window.onload = fetchWeatherData;
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
