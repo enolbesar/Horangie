@@ -3,7 +3,7 @@
     include("connect.php");
 
     // Fetch user data from the database
-    $sql = "SELECT timestamp, rain, temp, soil, hum, hindex, sun FROM tb_logsensor ORDER BY timestamp DESC LIMIT 15";
+    $sql = "SELECT timestamp, rain, temp, soil, hum, hindex, sun FROM tb_logsensor ORDER BY timestamp DESC LIMIT 25";
     $result = $koneksi->query($sql);
 
     if ($result === false) {

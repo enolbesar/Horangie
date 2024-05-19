@@ -14,7 +14,7 @@
     }
 
     // Fetch user data from the database
-    $sql = "SELECT timestamp, rain, temp, soil, hum, hindex, sun FROM tb_logsensor ORDER BY timestamp DESC LIMIT 15" ; // Adjust the table name and column names as needed
+    $sql = "SELECT timestamp, rain, temp, soil, hum, hindex, sun FROM tb_logsensor ORDER BY timestamp DESC LIMIT 25" ; // Adjust the table name and column names as needed
     $result = $conn->query($sql);
 
     // Close the connection after fetching data
