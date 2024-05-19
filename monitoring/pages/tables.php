@@ -1,24 +1,35 @@
 <?php
-    // Database configuration
-    $servername = "localhost"; // Change as needed
-    $username = "root"; // Change as needed
-    $password = ""; // Change as needed
-    $dbname = "db_sensor";
+  // Database configuration
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "db_sensor";
 
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+  // Create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
 
-    // Fetch user data from the database
-    $sql = "SELECT timestamp, rain, temp, soil, hum, hindex, sun FROM tb_logsensor ORDER BY timestamp DESC LIMIT 15" ; // Adjust the table name and column names as needed
-    $result = $conn->query($sql);
+  // Pagination settings
+  $limit = 20; // Number of entries to show per page
+  $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+  $offset = ($page - 1) * $limit;
 
-    // Close the connection after fetching data
-    $conn->close();
+  // Fetch total number of records
+  $total_result = $conn->query("SELECT COUNT(*) as count FROM tb_logsensor");
+  $total_row = $total_result->fetch_assoc();
+  $total_records = $total_row['count'];
+  $total_pages = ceil($total_records / $limit);
+
+  // Fetch limited data for the current page
+  $sql = "SELECT timestamp, rain, temp, soil, hum, hindex, sun FROM tb_logsensor ORDER BY timestamp DESC LIMIT $limit OFFSET $offset";
+  $result = $conn->query($sql);
+
+  // Close the connection after fetching data
+  $conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -66,50 +77,80 @@
       </div>
     </nav>
     <div class="container-fluid py-2">
-      <div class="row">
-        <div class="col-12">
-          <div class="card mb-4">
-            <div class="card-body px-0 pt-0 pb-2">
-              <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
-                  <thead>
-                    <tr>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Timestamp</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rain Intensity</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Air Temperature</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Soil Moisture</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Air Humidity</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Heat Index</th>
-                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sunlight</th>
-                      <th class="text-secondary opacity-7"></th>
-                    </tr>
-                  </thead>
-                  <tbody id="weather-table-body">
-                  <?php if ($result->num_rows > 0) : ?>
-                      <?php while($row = $result->fetch_assoc()) : ?>
-                        <tr class="text-xs font-weight-bold mb-0">
-                          <td><?php echo htmlspecialchars($row['timestamp']); ?></td>
-                          <td><?php echo htmlspecialchars($row['rain']); ?></td>
-                          <td><?php echo htmlspecialchars($row['temp']); ?></td>
-                          <td><?php echo htmlspecialchars($row['soil']); ?></td>
-                          <td><?php echo htmlspecialchars($row['hum']); ?></td>
-                          <td><?php echo htmlspecialchars($row['hindex']); ?></td>
-                          <td><?php echo htmlspecialchars($row['sun']); ?></td>
-                        </tr>
-                      <?php endwhile; ?>
-                    <?php else : ?>
+    <div class="row">
+      <div class="col-12">
+        <div class="card mb-4">
+          <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-left mb-0 text-center">
+                <thead>
+                  <tr>
+                    <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Timestamp</th>
+                    <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Rain Intensity</th>
+                    <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Air Temperature</th>
+                    <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Soil Moisture</th>
+                    <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Air Humidity</th>
+                    <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Heat Index</th>
+                    <th class="text-left text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sunlight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php if ($result->num_rows > 0) : ?>
+                    <?php while($row = $result->fetch_assoc()) : ?>
                       <tr class="text-xs font-weight-bold mb-0">
-                        <td colspan="6">No data available</td>
+                        <td><?php echo htmlspecialchars($row['timestamp']); ?></td>
+                        <td><?php echo htmlspecialchars($row['rain']); ?></td>
+                        <td><?php echo htmlspecialchars($row['temp']); ?></td>
+                        <td><?php echo htmlspecialchars($row['soil']); ?></td>
+                        <td><?php echo htmlspecialchars($row['hum']); ?></td>
+                        <td><?php echo htmlspecialchars($row['hindex']); ?></td>
+                        <td><?php echo htmlspecialchars($row['sun']); ?></td>
                       </tr>
-                    <?php endif; ?>
-                  </tbody>
-                </table>
+                    <?php endwhile; ?>
+                  <?php else : ?>
+                    <tr class="text-xs font-weight-bold mb-0">
+                      <td colspan="7">No data available</td>
+                    </tr>
+                  <?php endif; ?>
+                </tbody>
+              </table>
+              <div class="text-right p-3">
+                <a href="export_csv.php" class="btn btn-primary">Export to CSV</a>
+              </div>
+              <div class="text-center p-3">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+                    <?php
+                      $start_page = max(1, $page - 2);
+                      $end_page = min($total_pages, $page + 2);
+
+                      if ($start_page > 1) {
+                          echo '<li class="page-item"><a class="page-link" href="?page=1">1</a></li>';
+                          if ($start_page > 2) {
+                              echo '<li class="page-item"><span class="page-link">...</span></li>';
+                          }
+                      }
+
+                      for ($i = $start_page; $i <= $end_page; $i++) {
+                          echo '<li class="page-item ' . ($i == $page ? 'active' : '') . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+                      }
+
+                      if ($end_page < $total_pages) {
+                          if ($end_page < $total_pages - 1) {
+                              echo '<li class="page-item"><span class="page-link">...</span></li>';
+                          }
+                          echo '<li class="page-item"><a class="page-link" href="?page=' . $total_pages . '">' . $total_pages . '</a></li>';
+                      }
+                    ?>
+                  </ul>
+                </nav>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
     <footer class="footer pt-1  ">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-lg-between">
@@ -143,40 +184,6 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
 
-        // // Gantilah URL ini dengan endpoint API Anda
-        // const apiUrl = 'https://your-api-endpoint.com/get-weather-data';
-
-        // // Fungsi untuk mengambil data dari API
-        // async function fetchWeatherData() {
-        //   try {
-        //     const response = await fetch(apiUrl);
-        //     const data = await response.json();
-
-        //     const tableBody = document.getElementById('weather-table-body');
-        //     tableBody.innerHTML = '';
-
-        //     data.forEach(item => {
-        //       const row = document.createElement('tr');
-              
-        //       row.innerHTML = `
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.timestamp}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.rain}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.temp}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.soil}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.hum}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.hindex}</span></td>
-        //         <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.sun}</span></td>
-        //       `;
-
-        //       tableBody.appendChild(row);
-        //     });
-        //   } catch (error) {
-        //     console.error('Error fetching weather data:', error);
-        //   }
-        // }
-
-        // // Panggil fungsi fetchWeatherData saat halaman dimuat
-        // window.onload = fetchWeatherData;
   </script>
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
