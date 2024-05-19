@@ -93,13 +93,17 @@
         </div>
       </div>
     </nav>
+
+    <!-- ===== -->
+    <!-- Table -->
+    <!-- ===== -->
     <div class="container-fluid py-2">
       <div class="row">
         <div class="col-12">
           <div class="card mb-4">
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
-                <table class="table align-items-center mb-0">
+                <table class="table align-items-center border-3 mb-0 text-center">
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
@@ -110,7 +114,7 @@
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="text-center">
                     <tr class="text-xs font-weight-bold mb-0">
                       <td>John Doe</td>
                       <td>1</td>
