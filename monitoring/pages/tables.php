@@ -1,5 +1,24 @@
 <?php
-    include("realTimeStat.php")
+    // Database configuration
+    $servername = "localhost"; // Change as needed
+    $username = "root"; // Change as needed
+    $password = ""; // Change as needed
+    $dbname = "db_sensor";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Fetch user data from the database
+    $sql = "SELECT timestamp, rain, temp, soil, hum, hindex, sun FROM tb_logsensor ORDER BY timestamp DESC LIMIT 15" ; // Adjust the table name and column names as needed
+    $result = $conn->query($sql);
+
+    // Close the connection after fetching data
+    $conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -120,97 +139,23 @@
                     </tr>
                   </thead>
                   <tbody id="weather-table-body">
-                    <tr>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">2024-05-12 10:33:00</span>
-                      </td>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">0</span>
-                      </td>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">36.2</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">70</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">23.1</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">26.5</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">26.5</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">2024-05-12 10:33:00</span>
-                      </td>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">23</span>
-                      </td>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">36.2</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">70</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">23.1</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">26.5</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">26.5</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">2024-05-12 10:33:00</span>
-                      </td>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">18</span>
-                      </td>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">36.2</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">70</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">23.1</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">26.5</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">26.5</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">2024-05-12 10:33:00</span>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">20</span>
-                      </td>
-                      <td class="align-middle text-center ">
-                        <span class="text-secondary text-xs font-weight-bold">36.2</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">70</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">23.1</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">26.5</span>
-                      </td>
-                      <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">26.5</span>
-                      </td>
-                    </tr>
+                  <?php if ($result->num_rows > 0) : ?>
+                      <?php while($row = $result->fetch_assoc()) : ?>
+                        <tr class="text-xs font-weight-bold mb-0">
+                          <td><?php echo htmlspecialchars($row['timestamp']); ?></td>
+                          <td><?php echo htmlspecialchars($row['rain']); ?></td>
+                          <td><?php echo htmlspecialchars($row['temp']); ?></td>
+                          <td><?php echo htmlspecialchars($row['soil']); ?></td>
+                          <td><?php echo htmlspecialchars($row['hum']); ?></td>
+                          <td><?php echo htmlspecialchars($row['hindex']); ?></td>
+                          <td><?php echo htmlspecialchars($row['sun']); ?></td>
+                        </tr>
+                      <?php endwhile; ?>
+                    <?php else : ?>
+                      <tr class="text-xs font-weight-bold mb-0">
+                        <td colspan="6">No data available</td>
+                      </tr>
+                    <?php endif; ?>
                   </tbody>
                 </table>
               </div>
@@ -291,6 +236,39 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+  <script>
+    // Fungsi untuk mengambil data dari API
+    async function fetchWeatherData() {
+      try {
+        const response = await fetch('realTimeStat.php');
+        const data = await response.json();
+
+        const tableBody = document.getElementById('weather-table-body');
+        tableBody.innerHTML = '';
+
+        data.forEach(item => {
+          const row = document.createElement('tr');
+              
+          row.innerHTML = `
+            <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.timestamp}</span></td>
+            <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.rain}</span></td>
+            <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.temp}</span></td>
+            <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.soil}</span></td>
+            <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.hum}</span></td>
+            <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.hindex}</span></td>
+            <td class="align-middle text-center"><span class="text-secondary text-xs font-weight-bold">${item.sun}</span></td>
+          `;
+          tableBody.appendChild(row);
+        });
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    }
+
+    // Panggil fungsi fetchWeatherData saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', fetchWeatherData);
+</script>
+
 </body>
 
 </html>
