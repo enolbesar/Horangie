@@ -38,17 +38,11 @@
     
     <main class="main-content position-relative border-radius-lg ">
         <!-- Title -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
-            <div class="container-fluid py-1 px-3">
-                <nav aria-label="breadcrumb">
-                    <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
-                </nav>
-                <!-- Tempatkan tombol dark mode di sini -->
-                <div class="form-check form-switch ps-0 ms-auto my-auto">
-                    <input class="form-check-input mt-1 ms-auto" type="checkbox" id="dark-version" onclick="darkMode(this)">
-                </div>
-            </div>
-        </nav>
+        <?php
+        $page_title = "Dashboard";
+        include('template/header.php');
+        ?>
+        
         <!-- Title END -->
 
         <div class="container-fluid py-2">
@@ -416,22 +410,8 @@
                 <!-- ================ --> 
             </div>
         </div>
-        <footer class="footer pt-1  ">
-            <div class="container-fluid">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <div class="copyright text-center text-sm text-muted text-lg-start">
-                            © <script>
-                            document.write(new Date().getFullYear())
-                            </script>,
-                            made with <i class="fa fa-heart"></i> by
-                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Horangie
-                                Team</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php include('template/footer.php'); ?>
+
     </main>
 
 
