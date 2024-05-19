@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Update user data if form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $id = $_POST['id'];
     $name = $_POST['name'];
     $gender = $_POST['gender'];
@@ -29,6 +29,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<script>alert('Record updated successfully');</script>";
     } else {
         echo "<script>alert('Error updating record: " . $conn->error . "');</script>";
+    }
+
+    $stmt->close();
+}
+
+// Delete user data if delete is requested
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
+    $id = $_POST['id'];
+
+    $sql = "DELETE FROM table_nodemcu_rfidrc522_mysql WHERE id=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Record deleted successfully');</script>";
+    } else {
+        echo "<script>alert('Error deleting record: " . $conn->error . "');</script>";
     }
 
     $stmt->close();
@@ -155,7 +172,10 @@ $conn->close();
                           <td><?php echo htmlspecialchars($row['mobile']); ?></td>
                           <td>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editUserModal" data-id="<?php echo $row['id']; ?>" data-name="<?php echo $row['name']; ?>" data-gender="<?php echo $row['gender']; ?>" data-email="<?php echo $row['email']; ?>" data-mobile="<?php echo $row['mobile']; ?>">Edit</button>
-                            <button type="button" class="btn btn-danger btn-sm" href="#">Delete</button>
+                            <form method="POST" action="userData.php" style="display:inline;">
+                              <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+                              <button type="submit" name="delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this record?');">Delete</button>
+                            </form>
                           </td>
                         </tr>
                       <?php endwhile; ?>
@@ -203,7 +223,7 @@ $conn->close();
                 <label for="editMobile" class="form-label">Mobile Number</label>
                 <input type="text" class="form-control" id="editMobile" name="mobile" required>
               </div>
-              <button type="submit" class="btn btn-primary">Save changes</button>
+              <button type="submit" name="update" class="btn btn-primary">Save changes</button>
             </form>
           </div>
         </div>
