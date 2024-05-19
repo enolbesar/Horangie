@@ -77,6 +77,7 @@ $conn->close();
   <script src="../js/threshold.js"></script>
   <script src="../js/cekdata.js"></script>
   <script src="../js/handleStatus.js"></script>
+  <link rel="stylesheet" href="css/style.css">
   <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 

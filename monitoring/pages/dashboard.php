@@ -18,7 +18,6 @@
     <!-- Nucleo Icons -->
     <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css">
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/0eea203261.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -30,6 +29,7 @@
     <script src="../js/handleStatus.js"></script>
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
+    <link rel="stylesheet" href="css/style.css">
     <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 

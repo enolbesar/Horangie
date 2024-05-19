@@ -29,6 +29,7 @@
   <script src="../js/handleStatus.js"></script>
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
+  <link rel="stylesheet" href="css/style.css">
   <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
 </head>
 
