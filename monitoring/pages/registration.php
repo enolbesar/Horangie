@@ -39,7 +39,7 @@
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html" target="_blank">
         <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">Horangie Registration</span>
+        <span class="ms-1 font-weight-bold">Horangie Input User</span>
       </a>
     </div>
     <hr class="horizontal dark mt-0">
@@ -74,7 +74,7 @@
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-check-bold text-primary text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Registration</span>
+            <span class="nav-link-text ms-1">Input User</span>
           </a>
         </li>
       </ul>
@@ -84,7 +84,7 @@
         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
             <div class="container-fluid py-1 px-3">
                 <nav aria-label="breadcrumb">
-                    <h6 class="font-weight-bolder text-white mb-0">Registration</h6>
+                    <h6 class="font-weight-bolder text-white mb-0">Input User</h6>
                 </nav>
                 <!-- Tempatkan tombol dark mode di sini -->
                 <div class="form-check form-switch ps-0 ms-auto my-auto">
@@ -98,14 +98,16 @@
                 <div class="col-7">
                     <div class="card mb-4">
                         <div class="card-header pb-0">
-                            <h6>Registration Form</h6>
+                            <h6>Input User Form</h6>
                         </div>
                         <div class="card-body px-0 pt-0 pb-2">
                             <div class="p-3">
                               <form>
                                 <div class="mb-3">
                                     <label for="input1" class="form-label">ID</label>
-                                    <input type="text" class="form-control" id="input1" placeholder="Please tag your card / key chain to display ID">
+                                    <div class="col-sm-9">
+                                        <textarea name="id" id="getUID" class="form-control" placeholder="Please Tag your Card / Key Chain to display ID" rows="2" required></textarea>
+                                    </div>
                                 </div>  
                                 <div class="mb-3">
                                     <label for="input2" class="form-label">Name</label>
@@ -271,6 +273,14 @@
     setInterval(function() {
         blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
     }, 750); 
+</script>
+<script>
+    $(document).ready(function(){
+        $("#getUID").load("UIDContainer.php");
+        setInterval(function() {
+            $("#getUID").load("UIDContainer.php");
+        }, 500);
+    });
 </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
