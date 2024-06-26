@@ -17,7 +17,7 @@ $result_update = mysqli_query($koneksi, "UPDATE tb_sensor SET rain='$rain', temp
 
 if ($result_update) {
     echo "Data updated successfully";
-    if ($currentMinute % 1 == 0 && $currentSecond == 0) {
+    if ($currentMinute % 5 == 0 && $currentSecond == 0) {
         mysqli_query($koneksi, "ALTER TABLE tb_logsensor AUTO_INCREMENT=1");
         sleep(1);
         $result_insert_log = mysqli_query($koneksi, "INSERT INTO tb_logsensor (rain, temp, soil, hum, hindex, sun, timestamp) VALUES ('$rain', '$temp', '$soil', '$hum', '$hindex', '$sun', '$timestamp')");

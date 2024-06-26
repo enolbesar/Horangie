@@ -28,6 +28,7 @@
                     <div class="d-flex justify-content-center align-items-center">
                         <button id="restartMicrocontrollerBtn" type="button" class="btn btn-primary">Restart</button>
                     </div>
+                    
                 </li>
             </ul>
         </div>

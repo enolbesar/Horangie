@@ -1,6 +1,4 @@
-<?php
-    include("realTimeStat.php")
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,52 +33,11 @@
 
 <body class="g-sidenav-show bg-gray-100">
   <div class="min-height-300 bg-primary position-absolute w-100"></div>
-  <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4" id="sidenav-main">
-    <div class="sidenav-header">
-      <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-      <a class="navbar-brand m-0" href="https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html" target="_blank">
-        <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-        <span class="ms-1 font-weight-bold">Horangie Registration</span>
-      </a>
-    </div>
-    <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="../pages/dashboard.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../pages/tables.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-chart-bar-32 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Table</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../pages/userData.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-bullet-list-67 text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">User Data</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="../pages/registration.php">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-check-bold text-primary text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Registration</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </aside>
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4" id="sidenav-main">
+        <?php
+        include('template/nav.php');
+        ?>
+    </aside>
     <main class="main-content position-relative border-radius-lg ">
         <?php
         $page_title = "Input User";
@@ -98,18 +55,16 @@
                             <div class="p-3">
                               <form>
                                 <div class="mb-3">
-                                    <label for="input1" class="form-label">ID</label>
-                                    <div class="col-sm-9">
-                                        <textarea name="id" id="getUID" class="form-control" placeholder="Please Tag your Card / Key Chain to display ID" rows="2" required></textarea>
-                                    </div>
+                                    <label for="input1" class="form-label">ID</label>       
+                                    <input type="text" name="id" id="getUID" class="form-control" placeholder="Please Tag your Card / Key Chain to display ID" required>
                                 </div>  
                                 <div class="mb-3">
                                     <label for="input2" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="input2" placeholder="Enter name">
+                                    <input name="name" type="text" class="form-control" placeholder="Enter Name" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="input3" class="form-label">Gender</label>
-                                    <select class="form-select" id="input3">
+                                    <select class="form-select" name="gender" id="input3">
                                         <option value="" selected disabled>Choose gender</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
@@ -117,13 +72,12 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="input4" class="form-label">Email Address</label>
-                                    <input type="email" class="form-control" id="input4" placeholder="Enter email">
+                                    <input name="email" type="email" class="form-control" placeholder="Enter Email Address" required>
                                 </div>                                    
                                 <div class="mb-3">
                                     <label for="input5" class="form-label">Mobile Number</label>
-                                    <input type="tel" class="form-control" id="input5" placeholder="Enter mobile number">
+                                    <input name="mobile" type="text" class="form-control" placeholder="Enter Mobile Number" required>
                                 </div>                                    
-
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                             </div>
@@ -131,7 +85,7 @@
                     </div>
                 </div>
 
-                <div class="col-5">
+                <!-- <div class="col-5">
                   <div class="card mb-4">
                       <div class="card-header pb-0">
                       </div>
@@ -153,23 +107,23 @@
                                                 <tbody>
                                                   <tr class="mb-5">
                                                       <td class="text-xs font-weight-bold">ID</td>
-                                                      <td class="text-xs">--------</td>
+                                                      <td align="left"><?php echo $data['id'];?></td>
                                                   </tr>
                                                   <tr class="py-4">
                                                       <td class="text-xs font-weight-bold">Name</td>
-                                                      <td class="text-xs">--------</td>
+                                                      <td align="left"><?php echo $data['name'];?></td>
                                                   </tr>
                                                   <tr class="py-4">
                                                       <td class="text-xs font-weight-bold">Gender</td>
-                                                      <td class="text-xs">--------</td>
+                                                      <td align="left"><?php echo $data['gender'];?></td>
                                                   </tr>
                                                   <tr class="py-4">
                                                       <td class="text-xs font-weight-bold">Email</td>
-                                                      <td class="text-xs">--------</td>
+                                                      <td align="left"><?php echo $data['email'];?></td>
                                                   </tr>
                                                   <tr class="py-4">
                                                       <td class="text-xs font-weight-bold">Mobile Number</td>
-                                                      <td class="text-xs">--------</td>
+                                                      <td align="left"><?php echo $data['mobile'];?></td>
                                                   </tr>
                                               </tbody>
                                             </table>
@@ -180,7 +134,7 @@
                           </div>
                       </div>
                   </div>
-              </div>
+              </div> -->
             </div>    
         </div>
         <?php include('template/footer.php'); ?>
@@ -201,65 +155,65 @@
         }
     </script>
 
-<script>
-    var myVar = setInterval(myTimer, 1000);
-    var myVar1 = setInterval(myTimer1, 1000);
-    var oldID="";
-    clearInterval(myVar1);
+    <script>
+        var myVar = setInterval(myTimer, 1000);
+        var myVar1 = setInterval(myTimer1, 1000);
+        var oldID="";
+        clearInterval(myVar1);
 
-    function myTimer() {
-        var getID=document.getElementById("getUID").innerHTML;
-        oldID=getID;
-        if(getID!="") {
-            myVar1 = setInterval(myTimer1, 500);
-            showUser(getID);
-            clearInterval(myVar);
-        }
-    }
-    
-    function myTimer1() {
-        var getID=document.getElementById("getUID").innerHTML;
-        if(oldID!=getID) {
-            myVar = setInterval(myTimer, 500);
-            clearInterval(myVar1);
-        }
-    }
-    
-    function showUser(str) {
-        if (str == "") {
-            document.getElementById("show_user_data").innerHTML = "";
-            return;
-        } else {
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else {
-                // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        function myTimer() {
+            var getID=document.getElementById("getUID").innerHTML;
+            oldID=getID;
+            if(getID!="") {
+                myVar1 = setInterval(myTimer1, 500);
+                showUser(getID);
+                clearInterval(myVar);
             }
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("show_user_data").innerHTML = this.responseText;
-                }
-            };
-            xmlhttp.open("GET","read tag user data.php?id="+str,true);
-            xmlhttp.send();
         }
-    }
-    
-    var blink = document.getElementById('blink');
-    setInterval(function() {
-        blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
-    }, 750); 
-</script>
-<script>
-    $(document).ready(function(){
-        $("#getUID").load("UIDContainer.php");
+        
+        function myTimer1() {
+            var getID=document.getElementById("getUID").innerHTML;
+            if(oldID!=getID) {
+                myVar = setInterval(myTimer, 500);
+                clearInterval(myVar1);
+            }
+        }
+        
+        function showUser(str) {
+            if (str == "") {
+                document.getElementById("show_user_data").innerHTML = "";
+                return;
+            } else {
+                if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("show_user_data").innerHTML = this.responseText;
+                    }
+                };
+                xmlhttp.open("GET","read tag user data.php?id="+str,true);
+                xmlhttp.send();
+            }
+        }
+        
+        var blink = document.getElementById('blink');
         setInterval(function() {
+            blink.style.opacity = (blink.style.opacity == 0 ? 1 : 0);
+        }, 750); 
+    </script>
+    <script>
+        $(document).ready(function(){
             $("#getUID").load("UIDContainer.php");
-        }, 500);
-    });
-</script>
+            setInterval(function() {
+                $("#getUID").load("UIDContainer.php");
+            }, 500);
+        });
+    </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Argon Dashboard: parallax effects, scripts for the example pages etc -->

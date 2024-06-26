@@ -1,4 +1,5 @@
 <div class="row">
+    <!-- Kartu Soil Moisture -->
     <div class="col-lg-2 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
             <div class="card-body d-flex flex-column align-items-left p-1">
@@ -15,9 +16,10 @@
         </div>
     </div>
 
+    <!-- Kartu Air Temperature -->
     <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
-            <div class="card-body d-flex flex-column align-items-left p-1"> <!-- Gaya disesuaikan -->
+            <div class="card-body d-flex flex-column align-items-left p-1">
                 <div class="icon text-primary mb-0">
                     <i class="fas fa-thermometer-half text-lg opacity-10" aria-hidden="true"></i>
                 </div>
@@ -31,9 +33,10 @@
         </div>
     </div>
 
+    <!-- Kartu Air Humidity -->
     <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
-            <div class="card-body d-flex flex-column align-items-left p-1"> <!-- Gaya disesuaikan -->
+            <div class="card-body d-flex flex-column align-items-left p-1">
                 <div class="icon text-primary mb-0">
                     <i class="fas fa-tint text-lg opacity-10" aria-hidden="true"></i>                        
                 </div>
@@ -47,9 +50,10 @@
         </div>
     </div>
 
+    <!-- Kartu Heat Index -->
     <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
-            <div class="card-body d-flex flex-column align-items-left p-1"> <!-- Gaya disesuaikan -->
+            <div class="card-body d-flex flex-column align-items-left p-1">
                 <div class="icon text-primary mb-0">
                     <i class="fas fa-thermometer text-lg opacity-10" aria-hidden="true"></i>
                 </div>
@@ -63,9 +67,10 @@
         </div>
     </div>
 
+    <!-- Kartu Sunlight -->
     <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
-            <div class="card-body d-flex flex-column align-items-left p-1"> <!-- Gaya disesuaikan -->
+            <div class="card-body d-flex flex-column align-items-left p-1">
                 <div class="icon text-primary mb-0">
                     <i class="fas fa-sun text-lg opacity-10" aria-hidden="true"></i>
                 </div>
@@ -79,9 +84,10 @@
         </div>
     </div>
 
+    <!-- Kartu Rain Intensity -->
     <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
         <div class="card">
-            <div class="card-body d-flex flex-column align-items-left p-1"> <!-- Gaya disesuaikan -->
+            <div class="card-body d-flex flex-column align-items-left p-1">
                 <div class="icon text-primary mb-0">
                     <i class="fas fa-cloud-showers-heavy text-lg opacity-10" aria-hidden="true"></i>
                 </div>
@@ -94,5 +100,18 @@
             </div>
         </div>
     </div>
-</div>
 
+    <!-- Status ESP32 -->
+    <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
+        <div class="card">
+            <div class="card-body d-flex flex-column align-items-left p-1">
+                <div class="text-center">
+                    <h2 class="font-weight-bolder mt-1">
+                        <span id="status_esp32"></span>
+                    </h2>
+                    <p class="text-sm mb-2 text-uppercase font-weight-bold">Status ESP32</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

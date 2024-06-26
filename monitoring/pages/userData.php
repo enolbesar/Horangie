@@ -1,17 +1,5 @@
 <?php
-// Database configuration
-$servername = "localhost"; // Change as needed
-$username = "root"; // Change as needed
-$password = ""; // Change as needed
-$dbname = "nodemcu_rfidrc522_mysql";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include "connect.php";
 
 // Update user data if form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
@@ -22,13 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $mobile = $_POST['mobile'];
 
     $sql = "UPDATE table_nodemcu_rfidrc522_mysql SET name=?, gender=?, email=?, mobile=? WHERE id=?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $koneksi->prepare($sql);
     $stmt->bind_param("ssssi", $name, $gender, $email, $mobile, $id);
 
     if ($stmt->execute()) {
         echo "<script>alert('Record updated successfully');</script>";
     } else {
-        echo "<script>alert('Error updating record: " . $conn->error . "');</script>";
+        echo "<script>alert('Error updating record: " . $koneksi->error . "');</script>";
     }
 
     $stmt->close();
@@ -39,13 +27,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
     $id = $_POST['id'];
 
     $sql = "DELETE FROM table_nodemcu_rfidrc522_mysql WHERE id=?";
-    $stmt = $conn->prepare($sql);
+    $stmt = $koneksi->prepare($sql);
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
         echo "<script>alert('Record deleted successfully');</script>";
     } else {
-        echo "<script>alert('Error deleting record: " . $conn->error . "');</script>";
+        echo "<script>alert('Error deleting record: " . $koneksi->error . "');</script>";
     }
 
     $stmt->close();
@@ -53,10 +41,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
 
 // Fetch user data from the database
 $sql = "SELECT name, id, gender, email, mobile FROM table_nodemcu_rfidrc522_mysql"; // Adjust the table name and column names as needed
-$result = $conn->query($sql);
+$result = $koneksi->query($sql);
 
-// Close the connection after fetching data
-$conn->close();
+// Close the koneksiection after fetching data
+$koneksi->close();
 ?>
 
 <!DOCTYPE html>
@@ -178,8 +166,11 @@ $conn->close();
         </div>
       </div>
     </div>
-    <?php include('template/footer.php'); ?>
+    
 
+    <footer>
+      <?php include('template/footer.php'); ?>
+    </footer>
   </main>
   <!-- Core JS Files -->
   <script src="../assets/js/core/popper.min.js"></script>

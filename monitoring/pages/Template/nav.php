@@ -46,11 +46,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?php echo $current_page == 'registration.php' ? 'active' : ''; ?>" href="../pages/registration.php">
+                <a class="nav-link <?php echo $current_page == 'registration.php' ? 'active' : ''; ?>" href="../pages/regist/registration.php">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-check-bold text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Registration</span>
+                    <span class="nav-link-text ms-1">Input User</span>
                 </a>
             </li>
         </ul>

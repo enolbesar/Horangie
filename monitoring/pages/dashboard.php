@@ -65,7 +65,8 @@
 
                 <!-- Restart -->
                 <?php include('template/restartDevice.php'); ?>
-                <!-- ======= -->
+                <div id="status-container">
+                </div>
             </div>
         </div>
         <!-- Footer -->
