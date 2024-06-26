@@ -1,51 +1,63 @@
-<div class="col-lg-2">
-    <div class="card">
-        <div class="card-header pb-0 p-3">
-            <h6 class="mb-0">Restart</h6>
+<div class="col-lg-2 mb-lg-0 mb-3">
+    <div class="card z-index-2 h-100">
+        <div class="card-header pb-0 pt-3 bg-transparent">
+            <h6 class="mb-0">Device</h6>
         </div>
-        <div class="card-body p-4 mt-2">
+        <div class="card-body p-3 mt-1">
             <ul class="list-group">
-                <li class="list-group-item border-0 mb-0">
+                <li class="list-group-item border-0 mb-0 p-1">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="d-flex flex-column">
+                            <h6 class="mb-0 text-dark text-sm">Status Device</h6>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item border-0 p-0">
+                    <h5 class="font-weight-bolder mt-0 text-center">
+                        <span id="status_esp32" class="text-small">Online</span>
+                    </h5>
+                </li>
+                <li class="list-group-item border-0 mb-0 mt-1 p-1">
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="d-flex flex-column">
                             <h6 class="mb-0 mt-0 text-dark text-sm">Wifi Credential</h6>
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item border-0 mb-0">
+                <li class="list-group-item border-0 mt-0 mb-1 p-1">
                     <div class="d-flex justify-content-center align-items-center">
-                        <button id="restartWifiBtn" type="button" class="btn btn-primary">Restart</button>
+                        <button id="restartWifiBtn" type="button" class="btn btn-primary btn-sm">Restart</button>
                     </div>
                 </li>
-                <li class="list-group-item border-0 mb-0">
+                <li class="list-group-item border-0 mb-0 p-1">
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="d-flex flex-column">
-                            <h6 class="mb-1 text-dark text-sm">Microcontroller</h6>
+                            <h6 class="mb-0 mt-0  text-dark text-sm">Microcontroller</h6>
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item border-0 mb-0">
+                <li class="list-group-item border-0 mb-0 p-1">
                     <div class="d-flex justify-content-center align-items-center">
-                        <button id="restartMicrocontrollerBtn" type="button" class="btn btn-primary">Restart</button>
+                        <button id="restartMicrocontrollerBtn" type="button" class="btn btn-primary btn-sm">Restart</button>
                     </div>
-                    
                 </li>
             </ul>
         </div>
     </div>
-</div>  
+</div>
 
 <!-- Alert -->
 <div class="popup-container hidden" id="customAlert">
     <div class="popup-box bg-primary">
         <h1 id="alertTitle" class="text-secondary">Restart Wifi</h1>
         <p id="alertMessage" class="text-secondary">Restart wifi sekarang?</p>
-        <button class="glow-on-hover bg-primary" id="cancelButton">Cancel</button>
-        <button class="glow-on-hover" id="okButton">OK</button>
+        <button class="glow-on-hover bg-primary btn-sm" id="cancelButton">Cancel</button>
+        <button class="glow-on-hover btn-sm" id="okButton">OK</button>
     </div>
+</div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
         var restartWifiBtn = document.getElementById("restartWifiBtn");
         var restartMicrocontrollerBtn = document.getElementById("restartMicrocontrollerBtn");
         var customAlert = document.getElementById("customAlert");
@@ -66,7 +78,6 @@
         function hideAlert() {
             customAlert.classList.add("hidden");
             sidenav.classList.add("hidden");
-            
         }
 
         function updateDevice(deviceType) {
@@ -102,5 +113,4 @@
             }
         });
     });
-    </script>
-</div>
+</script>
