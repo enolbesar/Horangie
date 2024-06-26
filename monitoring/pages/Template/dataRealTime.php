@@ -100,18 +100,4 @@
             </div>
         </div>
     </div>
-
-    <!-- Status ESP32 -->
-    <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
-        <div class="card">
-            <div class="card-body d-flex flex-column align-items-left p-1">
-                <div class="text-center">
-                    <h2 class="font-weight-bolder mt-1">
-                        <span id="status_esp32"></span>
-                    </h2>
-                    <p class="text-sm mb-2 text-uppercase font-weight-bold">Status ESP32</p>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
